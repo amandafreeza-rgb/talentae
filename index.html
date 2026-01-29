@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talentae - Platform Belajar Skill Praktis</title>
     
-    <!-- Bootstrap 5 -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Google Fonts - Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -19,20 +19,10 @@
             --primary: #5B23FF;
             --background: #F5FBE6;
             --secondary: #54B435;
-            --dark: #1a1a2e;
-            --light: #ffffff;
-            --text-dark: #2d3436;
-            --text-light: #636e72;
-            --shadow: 0 10px 30px rgba(91, 35, 255, 0.1);
-            --shadow-hover: 0 15px 40px rgba(91, 35, 255, 0.2);
-        }
-
-        [data-theme="dark"] {
-            --background: #1a1a2e;
-            --light: #2d3436;
-            --text-dark: #f5f6fa;
-            --text-light: #dfe6e9;
-            --dark: #f5f6fa;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+            --gray: #6c757d;
+            --light-gray: #f8f9fa;
         }
 
         * {
@@ -43,415 +33,275 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--background);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            overflow-x: hidden;
+            background-color: var(--background);
+            color: var(--dark);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --background: #1a1a1a;
+            --white: #2d2d2d;
+            --dark: #ffffff;
+            --light-gray: #2d2d2d;
+            background-color: var(--background);
+            color: var(--dark);
         }
 
         /* Navbar */
         .navbar {
-            background: var(--light);
-            box-shadow: var(--shadow);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
         }
 
         .navbar-brand {
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary) !important;
         }
 
         .nav-link {
-            color: var(--text-dark);
+            color: var(--dark) !important;
             font-weight: 500;
             margin: 0 0.5rem;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s;
         }
 
         .nav-link:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
+            color: var(--primary) !important;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Buttons */
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-color: var(--primary);
             border: none;
-            border-radius: 50px;
-            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
             font-weight: 600;
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
+            transition: all 0.3s;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+            background-color: #4a1acc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(91, 35, 255, 0.3);
         }
 
-        .btn-outline-primary {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            border-radius: 50px;
-            padding: 0.8rem 2rem;
+        .btn-secondary {
+            background-color: var(--secondary);
+            border: none;
+            border-radius: 25px;
+            padding: 0.5rem 1.5rem;
             font-weight: 600;
-            background: transparent;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .btn-outline-primary:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
+        .btn-secondary:hover {
+            background-color: #459129;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(84, 180, 53, 0.3);
         }
 
         /* Hero Section */
         .hero {
             padding: 5rem 0;
-            background: linear-gradient(135deg, var(--background) 0%, rgba(91, 35, 255, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(91, 35, 255, 0.1), transparent);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: white;
+            border-radius: 0 0 50px 50px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--text-light);
             margin-bottom: 2rem;
         }
 
         /* Cards */
-        .course-card {
-            background: var(--light);
+        .card {
+            border: none;
             border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            height: 100%;
-            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            background-color: var(--white);
             overflow: hidden;
         }
 
-        .course-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .course-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .course-card:hover {
+        .card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 0 10px 30px rgba(91, 35, 255, 0.2);
         }
 
-        .course-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
             color: white;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .course-card:hover .course-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .badge-level {
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
             font-weight: 600;
-            text-transform: uppercase;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.2rem;
         }
 
         .badge-beginner {
-            background: linear-gradient(135deg, #54B435, #a8e063);
+            background-color: #54B435;
             color: white;
         }
 
         .badge-intermediate {
-            background: linear-gradient(135deg, #5B23FF, #a855f7);
+            background-color: #FF9800;
             color: white;
         }
 
         .badge-advanced {
-            background: linear-gradient(135deg, #FF6B6B, #ff8787);
+            background-color: #F44336;
             color: white;
         }
 
         /* Progress Bar */
-        .progress-container {
-            background: rgba(91, 35, 255, 0.1);
-            border-radius: 50px;
+        .progress {
             height: 10px;
-            overflow: hidden;
-            margin: 1rem 0;
+            border-radius: 10px;
+            background-color: #e9ecef;
         }
 
-        .progress-bar-custom {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 50px;
-            transition: width 1s ease;
-            position: relative;
-            overflow: hidden;
+        .progress-bar {
+            background-color: var(--secondary);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
         }
 
-        .progress-bar-custom::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
+        /* Form Styling */
+        .form-control {
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(91, 35, 255, 0.25);
         }
 
-        /* Auth Forms */
+        /* Auth Pages */
         .auth-container {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--background) 0%, rgba(91, 35, 255, 0.05) 100%);
+            padding: 2rem 0;
         }
 
         .auth-card {
-            background: var(--light);
-            border-radius: 30px;
-            padding: 3rem;
-            box-shadow: var(--shadow-hover);
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
-            margin: 2rem;
-        }
-
-        .form-control {
-            border-radius: 15px;
-            padding: 0.8rem 1.2rem;
-            border: 2px solid rgba(91, 35, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(91, 35, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background-color: var(--white);
         }
 
         /* Dashboard */
-        .dashboard-stat {
-            background: var(--light);
-            border-radius: 20px;
+        .dashboard-card {
+            background-color: var(--white);
             padding: 2rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .dashboard-stat:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Certificate */
-        .certificate {
-            background: var(--light);
             border-radius: 20px;
-            padding: 3rem;
-            box-shadow: var(--shadow-hover);
-            border: 5px solid var(--primary);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
         }
 
-        .certificate::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(91, 35, 255, 0.02) 10px,
-                rgba(91, 35, 255, 0.02) 20px
-            );
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         /* Roadmap */
         .roadmap-step {
-            background: var(--light);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin: 1rem 0;
             position: relative;
-            transition: all 0.3s ease;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .roadmap-step::before {
             content: '';
             position: absolute;
-            left: -20px;
+            left: -30px;
             top: 50%;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
             transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .roadmap-step.completed {
-            border-left: 5px solid var(--secondary);
-        }
-
-        .roadmap-step.active {
-            border-left: 5px solid var(--primary);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Checkmark Animation */
-        .checkmark-circle {
-            width: 80px;
-            height: 80px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            animation: scaleIn 0.5s ease;
+            border: 4px solid var(--background);
         }
 
-        .checkmark {
-            color: white;
-            font-size: 2.5rem;
-            animation: checkmark 0.5s ease 0.3s both;
+        .roadmap-step.completed::before {
+            background-color: var(--primary);
         }
 
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
-        }
-
-        @keyframes checkmark {
-            from { opacity: 0; transform: scale(0) rotate(-45deg); }
-            to { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+        /* Payment Modal */
+        .payment-option {
+            padding: 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            margin-bottom: 1rem;
             cursor: pointer;
-            box-shadow: var(--shadow-hover);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            transition: all 0.3s;
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(15deg);
+        .payment-option:hover {
+            border-color: var(--primary);
+            background-color: rgba(91, 35, 255, 0.05);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(91, 35, 255, 0.1);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background-color: transparent;
+            border: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: rotate(20deg);
         }
 
         /* Loading Animation */
@@ -462,57 +312,118 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.8);
             z-index: 9999;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(255,255,255,0.2);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .loading-container.show {
+            display: flex;
         }
 
         /* Empty State */
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 3rem;
+            color: var(--gray);
         }
 
-        .empty-icon {
+        .empty-state i {
             font-size: 5rem;
-            color: var(--text-light);
-            opacity: 0.5;
             margin-bottom: 1rem;
+            opacity: 0.3;
         }
 
-        /* Payment Modal */
-        .payment-method {
-            background: var(--light);
-            border: 2px solid rgba(91, 35, 255, 0.1);
+        /* Checkmark Animation */
+        @keyframes checkmark {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .checkmark {
+            animation: checkmark 0.5s ease-in-out;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--white);
+            padding: 1rem 1.5rem;
             border-radius: 15px;
-            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 9998;
+            display: none;
+            animation: slideIn 0.3s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .notification.success {
+            border-left: 4px solid var(--secondary);
+        }
+
+        .notification.error {
+            border-left: 4px solid #F44336;
+        }
+
+        /* Icon Animation */
+        .icon-hover {
+            transition: all 0.3s;
+        }
+
+        .icon-hover:hover {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--primary);
+        }
+
+        /* Certificate */
+        .certificate {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: 10px solid var(--primary);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .certificate h1 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        /* QR Code Container */
+        .qr-code-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
             margin: 1rem 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .payment-method:hover {
-            border-color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .payment-method.selected {
-            border-color: var(--primary);
-            background: rgba(91, 35, 255, 0.05);
         }
 
         /* Responsive */
@@ -520,1374 +431,1698 @@
             .hero h1 {
                 font-size: 2rem;
             }
-
+            
             .hero p {
                 font-size: 1rem;
             }
-
-            .auth-card {
-                padding: 2rem;
-            }
-
-            .theme-toggle {
-                bottom: 1rem;
-                right: 1rem;
-            }
         }
 
-        /* Video Player */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 20px;
-            background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Premium Badge */
-        .premium-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .notification {
-            position: fixed;
-            top: 5rem;
-            right: 2rem;
-            background: var(--light);
-            padding: 1rem 1.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-hover);
-            z-index: 1001;
+        .page {
             display: none;
-            animation: slideIn 0.3s ease;
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .notification.success {
-            border-left: 5px solid var(--secondary);
-        }
-
-        .notification.error {
-            border-left: 5px solid #FF6B6B;
-        }
-
-        .hidden {
-            display: none !important;
+        .page.active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-    <!-- Loading -->
-    <div class="loading-container" id="loading">
-        <div class="loading-spinner"></div>
+    <!-- Loading Animation -->
+    <div class="loading-container" id="loadingContainer">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_a2chheio.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
     </div>
 
     <!-- Notification -->
     <div class="notification" id="notification">
-        <i class="fas fa-check-circle me-2"></i>
-        <span id="notificationText"></span>
-    </div>
-
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
+        <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle me-2"></i>
+            <span id="notificationMessage"></span>
+        </div>
     </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" id="mainNav">
+    <nav class="navbar navbar-expand-lg" id="mainNavbar" style="display: none;">
         <div class="container">
             <a class="navbar-brand" href="#" onclick="showPage('home')">
-                <i class="fas fa-graduation-cap me-2"></i>Talentae
+                <i class="fas fa-graduation-cap"></i> Talentae
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto" id="navMenu">
-                    <!-- Menu akan diisi oleh JavaScript -->
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('home')">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('courses')">Kelas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('roadmap')">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showPage('profile')">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary ms-2" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <div id="mainContent"></div>
+    <!-- Login Page -->
+    <div id="loginPage" class="page active">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="text-center mb-4">
+                    <h2 class="mb-2" style="color: var(--primary); font-weight: 700;">
+                        <i class="fas fa-graduation-cap"></i> Talentae
+                    </h2>
+                    <p class="text-muted">Masuk ke akun Anda</p>
+                </div>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="loginEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Ingat Saya</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Masuk</button>
+                    <div class="text-center">
+                        <a href="#" onclick="showPage('forgot')" class="text-decoration-none">Lupa Password?</a>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <p>Belum punya akun? <a href="#" onclick="showPage('register')" class="text-decoration-none fw-bold" style="color: var(--primary);">Daftar Sekarang</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="text-center mb-4">
+                    <h2 class="mb-2" style="color: var(--primary); font-weight: 700;">
+                        <i class="fas fa-graduation-cap"></i> Talentae
+                    </h2>
+                    <p class="text-muted">Buat akun baru</p>
+                </div>
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="mb-3">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="registerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                        <small class="text-muted">Minimal 6 karakter</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Konfirmasi Password</label>
+                        <input type="password" class="form-control" id="registerConfirmPassword" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Daftar</button>
+                    <div class="text-center">
+                        <p>Sudah punya akun? <a href="#" onclick="showPage('login')" class="text-decoration-none fw-bold" style="color: var(--primary);">Masuk</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Page -->
+    <div id="forgotPage" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="text-center mb-4">
+                    <h2 class="mb-2" style="color: var(--primary); font-weight: 700;">Lupa Password</h2>
+                    <p class="text-muted">Masukkan email Anda untuk reset password</p>
+                </div>
+                <form id="forgotForm" onsubmit="handleForgotPassword(event)">
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="forgotEmail" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">Reset Password</button>
+                    <div class="text-center">
+                        <a href="#" onclick="showPage('login')" class="text-decoration-none">Kembali ke Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1>Belajar Skill Praktis, Siap Kerja!</h1>
+                        <p>Platform pembelajaran singkat dan aplikatif untuk membantu Anda menguasai skill yang dibutuhkan industri</p>
+                        <button class="btn btn-light btn-lg" onclick="showPage('courses')">
+                            <i class="fas fa-play-circle"></i> Mulai Belajar Gratis
+                        </button>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_w51pcehl.json" background="transparent" speed="1" style="width: 100%; height: 400px;" loop autoplay></lottie-player>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">Kategori Populer</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-palette fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>Desain</h4>
+                                <p class="text-muted">UI/UX, Graphic Design, Video Editing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-code fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>Coding</h4>
+                                <p class="text-muted">Web Development, Mobile Apps, Python</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-robot fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>AI & Data</h4>
+                                <p class="text-muted">Machine Learning, ChatGPT, Data Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-bullhorn fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>Digital Marketing</h4>
+                                <p class="text-muted">SEO, Social Media, Content Marketing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-chart-line fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>Keuangan</h4>
+                                <p class="text-muted">Investasi, Accounting, Financial Planning</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-laptop-code fa-3x mb-3 icon-hover" style="color: var(--primary);"></i>
+                                <h4>Freelancing</h4>
+                                <p class="text-muted">Portfolio Building, Client Management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Courses -->
+        <section class="py-5" style="background-color: var(--white);">
+            <div class="container">
+                <h2 class="text-center mb-5 fw-bold">Kelas Unggulan</h2>
+                <div class="row g-4" id="featuredCourses"></div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary btn-lg" onclick="showPage('courses')">Lihat Semua Kelas</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Courses Page -->
+    <div id="coursesPage" class="page">
+        <div class="container py-5">
+            <h1 class="mb-4 fw-bold">Semua Kelas</h1>
+            
+            <!-- Filter -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <select class="form-select" id="categoryFilter" onchange="filterCourses()">
+                        <option value="all">Semua Kategori</option>
+                        <option value="desain">Desain</option>
+                        <option value="coding">Coding</option>
+                        <option value="ai">AI & Data</option>
+                        <option value="digital-marketing">Digital Marketing</option>
+                        <option value="keuangan">Keuangan</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="levelFilter" onchange="filterCourses()">
+                        <option value="all">Semua Level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="typeFilter" onchange="filterCourses()">
+                        <option value="all">Semua Tipe</option>
+                        <option value="gratis">Gratis</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-4" id="coursesList"></div>
+        </div>
+    </div>
+
+    <!-- Course Detail Modal -->
+    <div class="modal fade" id="courseDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="courseDetailTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="courseDetailBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Pilih Metode Pembayaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="paymentMethodSelection">
+                        <div class="payment-option" onclick="selectPaymentMethod('card')">
+                            <i class="fas fa-credit-card fa-2x mb-2" style="color: var(--primary);"></i>
+                            <h6>Kartu Kredit/Debit</h6>
+                        </div>
+                        <div class="payment-option" onclick="selectPaymentMethod('qris')">
+                            <i class="fas fa-qrcode fa-2x mb-2" style="color: var(--primary);"></i>
+                            <h6>QRIS</h6>
+                        </div>
+                        <div class="payment-option" onclick="selectPaymentMethod('bank')">
+                            <i class="fas fa-university fa-2x mb-2" style="color: var(--primary);"></i>
+                            <h6>Transfer Bank</h6>
+                        </div>
+                        <div class="payment-option" onclick="selectPaymentMethod('ewallet')">
+                            <i class="fas fa-mobile-alt fa-2x mb-2" style="color: var(--primary);"></i>
+                            <h6>E-Wallet</h6>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Form -->
+                    <div id="cardPaymentForm" style="display: none;">
+                        <form onsubmit="processCardPayment(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Nama Bank</label>
+                                <select class="form-select" id="bankName" required>
+                                    <option value="">Pilih Bank</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="Mandiri">Mandiri</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="BRI">BRI</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Kartu</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Tanggal Kadaluarsa</label>
+                                    <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="3" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Jumlah Tagihan</label>
+                                <input type="text" class="form-control" id="cardAmount" readonly>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Bayar Sekarang</button>
+                            <button type="button" class="btn btn-secondary w-100 mt-2" onclick="backToPaymentMethods()">Kembali</button>
+                        </form>
+                    </div>
+
+                    <!-- QRIS Payment -->
+                    <div id="qrisPayment" style="display: none;">
+                        <div class="qr-code-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=talentae-payment" alt="QR Code" style="width: 200px; height: 200px;">
+                            <h5 class="mt-3">Scan QR Code</h5>
+                            <p class="text-muted">Total: <span id="qrisAmount"></span></p>
+                        </div>
+                        <button class="btn btn-primary w-100 mt-3" onclick="confirmQRISPayment()">Saya Sudah Bayar</button>
+                        <button type="button" class="btn btn-secondary w-100 mt-2" onclick="backToPaymentMethods()">Kembali</button>
+                    </div>
+
+                    <!-- Bank Transfer -->
+                    <div id="bankTransfer" style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label">Pilih Bank</label>
+                            <select class="form-select" id="transferBank" onchange="showBankAccount()">
+                                <option value="">Pilih Bank</option>
+                                <option value="BCA">BCA</option>
+                                <option value="Mandiri">Mandiri</option>
+                                <option value="BNI">BNI</option>
+                                <option value="BRI">BRI</option>
+                            </select>
+                        </div>
+                        <div id="bankAccountInfo" style="display: none;">
+                            <div class="alert alert-info">
+                                <h6>Detail Transfer:</h6>
+                                <p class="mb-1">Bank: <strong id="selectedBank"></strong></p>
+                                <p class="mb-1">No. Rekening: <strong>1234567890</strong></p>
+                                <p class="mb-1">Atas Nama: <strong>PT Talentae Indonesia</strong></p>
+                                <p class="mb-0">Jumlah: <strong id="bankAmount"></strong></p>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="confirmBankTransfer()">Konfirmasi Pembayaran</button>
+                        </div>
+                        <button type="button" class="btn btn-secondary w-100 mt-2" onclick="backToPaymentMethods()">Kembali</button>
+                    </div>
+
+                    <!-- E-Wallet -->
+                    <div id="ewalletPayment" style="display: none;">
+                        <div class="mb-3">
+                            <label class="form-label">Pilih E-Wallet</label>
+                            <select class="form-select" id="ewalletType" onchange="showEwalletInfo()">
+                                <option value="">Pilih E-Wallet</option>
+                                <option value="Dana">Dana</option>
+                                <option value="GoPay">GoPay</option>
+                                <option value="ShopeePay">ShopeePay</option>
+                            </select>
+                        </div>
+                        <div id="ewalletInfo" style="display: none;">
+                            <div class="alert alert-info">
+                                <h6>Detail Pembayaran:</h6>
+                                <p class="mb-1">E-Wallet: <strong id="selectedEwallet"></strong></p>
+                                <p class="mb-0">Jumlah: <strong id="ewalletAmount"></strong></p>
+                            </div>
+                            <div class="qr-code-container">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=talentae-ewallet" alt="QR Code" style="width: 200px; height: 200px;">
+                                <p class="text-muted mt-2">Scan dengan aplikasi <span id="ewalletName"></span></p>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="confirmEwalletPayment()">Konfirmasi Pembayaran</button>
+                        </div>
+                        <button type="button" class="btn btn-secondary w-100 mt-2" onclick="backToPaymentMethods()">Kembali</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div class="modal fade" id="paymentSuccessModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-body text-center p-5">
+                    <i class="fas fa-check-circle fa-5x mb-3 checkmark" style="color: var(--secondary);"></i>
+                    <h3 class="mb-3">Pembayaran Berhasil!</h3>
+                    <p class="text-muted">Terima kasih, pembayaran Anda telah dikonfirmasi.</p>
+                    <button class="btn btn-primary" data-bs-dismiss="modal" onclick="showPage('dashboard')">Lihat Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Roadmap Page -->
+    <div id="roadmapPage" class="page">
+        <div class="container py-5">
+            <h1 class="mb-4 fw-bold">Roadmap Pembelajaran</h1>
+            <p class="text-muted mb-5">Ikuti langkah demi langkah untuk menguasai skill yang Anda inginkan</p>
+            
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">Pilih Roadmap:</h5>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" onclick="showRoadmap('web-developer')">Web Developer</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="showRoadmap('ui-ux-designer')">UI/UX Designer</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="showRoadmap('digital-marketer')">Digital Marketer</a>
+                        <a href="#" class="list-group-item list-group-item-action" onclick="showRoadmap('data-analyst')">Data Analyst</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div id="roadmapContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="page">
+        <div class="container py-5">
+            <h1 class="mb-4 fw-bold">Dashboard</h1>
+            
+            <!-- Stats -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <i class="fas fa-book fa-2x mb-2"></i>
+                        <h3 id="totalCourses">0</h3>
+                        <p>Total Kelas</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, var(--secondary) 0%, #459129 100%);">
+                        <i class="fas fa-check-circle fa-2x mb-2"></i>
+                        <h3 id="completedCourses">0</h3>
+                        <p>Kelas Selesai</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                        <i class="fas fa-clock fa-2x mb-2"></i>
+                        <h3 id="inProgressCourses">0</h3>
+                        <p>Dalam Progress</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);">
+                        <i class="fas fa-certificate fa-2x mb-2"></i>
+                        <h3 id="totalCertificates">0</h3>
+                        <p>Sertifikat</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="dashboard-card mb-4">
+                <h4 class="mb-3 fw-bold">Progress Pembelajaran</h4>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Total Progress</span>
+                        <span id="overallProgress">0%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" id="overallProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course History -->
+            <div class="dashboard-card">
+                <h4 class="mb-3 fw-bold">Riwayat Kelas</h4>
+                <div id="courseHistory"></div>
+            </div>
+
+            <!-- Certificates -->
+            <div class="dashboard-card mt-4">
+                <h4 class="mb-3 fw-bold">Sertifikat Saya</h4>
+                <div id="certificatesList"></div>
+            </div>
+
+            <!-- Skills Mastered -->
+            <div class="dashboard-card mt-4">
+                <h4 class="mb-3 fw-bold">Skill yang Dikuasai</h4>
+                <div id="skillsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-body p-0">
+                    <div class="certificate" id="certificateContent">
+                        <h1><i class="fas fa-certificate"></i> Sertifikat Penyelesaian</h1>
+                        <p class="lead">Sertifikat ini diberikan kepada</p>
+                        <h2 id="certificateName" style="color: var(--primary); margin: 2rem 0;"></h2>
+                        <p class="lead">Telah menyelesaikan kelas</p>
+                        <h3 id="certificateCourse" style="margin: 2rem 0;"></h3>
+                        <p class="text-muted">Tanggal: <span id="certificateDate"></span></p>
+                        <div class="mt-4">
+                            <button class="btn btn-primary me-2" onclick="downloadCertificate()">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn btn-secondary" onclick="shareCertificateLinkedIn()">
+                                <i class="fab fa-linkedin"></i> Share di LinkedIn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="dashboard-card text-center">
+                        <div class="mb-3">
+                            <i class="fas fa-user-circle fa-5x" style="color: var(--primary);"></i>
+                        </div>
+                        <h4 id="profileName"></h4>
+                        <p class="text-muted" id="profileEmail"></p>
+                        <button class="btn btn-primary w-100 mt-3" onclick="enableEditProfile()">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="dashboard-card">
+                        <h4 class="mb-4 fw-bold">Informasi Akun</h4>
+                        <form id="profileForm" onsubmit="updateProfile(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="profileFormName" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="profileFormEmail" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Telepon</label>
+                                <input type="tel" class="form-control" id="profilePhone" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Bio</label>
+                                <textarea class="form-control" id="profileBio" rows="3" disabled></textarea>
+                            </div>
+                            <div id="profileActions" style="display: none;">
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelEditProfile()">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="dashboard-card mt-4">
+                        <h4 class="mb-4 fw-bold">Ubah Password</h4>
+                        <form id="changePasswordForm" onsubmit="changePassword(event)">
+                            <div class="mb-3">
+                                <label class="form-label">Password Lama</label>
+                                <input type="password" class="form-control" id="oldPassword" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password Baru</label>
+                                <input type="password" class="form-control" id="newPassword" required minlength="6">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Konfirmasi Password Baru</label>
+                                <input type="password" class="form-control" id="confirmNewPassword" required minlength="6">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ubah Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <script>
-        // App State
-        const AppState = {
-            currentUser: null,
-            courses: [],
-            userProgress: {},
-            certificates: [],
-            currentPage: 'home'
-        };
-
-        // Data Kursus
+        // Data Courses
         const coursesData = [
             {
                 id: 1,
-                title: 'UI/UX Design Fundamentals',
-                category: 'desain',
-                level: 'beginner',
-                duration: '10 menit',
-                icon: 'fa-palette',
-                description: 'Pelajari dasar-dasar desain antarmuka yang menarik dan user-friendly',
-                premium: false,
+                title: "UI/UX Design Fundamentals",
+                category: "desain",
+                level: "beginner",
+                type: "gratis",
                 price: 0,
-                videos: [
-                    { id: 1, title: 'Pengenalan UI/UX', duration: '5 menit', completed: false },
-                    { id: 2, title: 'Prinsip Desain', duration: '5 menit', completed: false }
-                ]
+                duration: "45 menit",
+                video: "https://www.youtube.com/embed/c9Wg6Cb_YlU",
+                description: "Pelajari dasar-dasar UI/UX Design dari nol",
+                image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400",
+                lessons: 8,
+                students: 1250
             },
             {
                 id: 2,
-                title: 'JavaScript Modern ES6+',
-                category: 'coding',
-                level: 'intermediate',
-                duration: '15 menit',
-                icon: 'fa-code',
-                description: 'Kuasai JavaScript modern dengan ES6 dan fitur-fitur terbaru',
-                premium: true,
-                price: 99000,
-                videos: [
-                    { id: 1, title: 'Arrow Functions', duration: '5 menit', completed: false },
-                    { id: 2, title: 'Async/Await', duration: '5 menit', completed: false },
-                    { id: 3, title: 'Destructuring', duration: '5 menit', completed: false }
-                ]
+                title: "Web Development dengan HTML & CSS",
+                category: "coding",
+                level: "beginner",
+                type: "gratis",
+                price: 0,
+                duration: "60 menit",
+                video: "https://www.youtube.com/embed/pQN-pnXPaVg",
+                description: "Mulai karir sebagai Web Developer",
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400",
+                lessons: 10,
+                students: 2100
             },
             {
                 id: 3,
-                title: 'Prompt Engineering untuk AI',
-                category: 'ai',
-                level: 'beginner',
-                duration: '12 menit',
-                icon: 'fa-robot',
-                description: 'Belajar cara membuat prompt yang efektif untuk AI tools',
-                premium: false,
+                title: "ChatGPT untuk Produktivitas",
+                category: "ai",
+                level: "beginner",
+                type: "gratis",
                 price: 0,
-                videos: [
-                    { id: 1, title: 'Dasar Prompt Engineering', duration: '6 menit', completed: false },
-                    { id: 2, title: 'Advanced Techniques', duration: '6 menit', completed: false }
-                ]
+                duration: "30 menit",
+                video: "https://www.youtube.com/embed/JTxsNm9IdYU",
+                description: "Maksimalkan produktivitas dengan AI",
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400",
+                lessons: 6,
+                students: 3500
             },
             {
                 id: 4,
-                title: 'Digital Marketing Strategy',
-                category: 'digital marketing',
-                level: 'intermediate',
-                duration: '14 menit',
-                icon: 'fa-bullhorn',
-                description: 'Strategi pemasaran digital yang efektif untuk bisnis Anda',
-                premium: true,
-                price: 149000,
-                videos: [
-                    { id: 1, title: 'Social Media Marketing', duration: '7 menit', completed: false },
-                    { id: 2, title: 'Content Strategy', duration: '7 menit', completed: false }
-                ]
+                title: "Instagram Marketing Mastery",
+                category: "digital-marketing",
+                level: "intermediate",
+                type: "premium",
+                price: 299000,
+                duration: "90 menit",
+                video: "https://www.youtube.com/embed/yNGVUzEwTnQ",
+                description: "Strategi Instagram Marketing yang terbukti efektif",
+                image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400",
+                lessons: 12,
+                students: 890
             },
             {
                 id: 5,
-                title: 'Personal Finance 101',
-                category: 'keuangan',
-                level: 'beginner',
-                duration: '10 menit',
-                icon: 'fa-coins',
-                description: 'Kelola keuangan pribadi dengan bijak dan efektif',
-                premium: false,
+                title: "Financial Planning 101",
+                category: "keuangan",
+                level: "beginner",
+                type: "gratis",
                 price: 0,
-                videos: [
-                    { id: 1, title: 'Budgeting Basics', duration: '5 menit', completed: false },
-                    { id: 2, title: 'Investment Tips', duration: '5 menit', completed: false }
-                ]
+                duration: "40 menit",
+                video: "https://www.youtube.com/embed/HQzoZfc3GwQ",
+                description: "Dasar-dasar perencanaan keuangan pribadi",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400",
+                lessons: 7,
+                students: 1800
             },
             {
                 id: 6,
-                title: 'Advanced Python Programming',
-                category: 'coding',
-                level: 'advanced',
-                duration: '15 menit',
-                icon: 'fa-python',
-                description: 'Teknik programming Python tingkat lanjut untuk profesional',
-                premium: true,
-                price: 199000,
-                videos: [
-                    { id: 1, title: 'OOP in Python', duration: '5 menit', completed: false },
-                    { id: 2, title: 'Decorators & Generators', duration: '5 menit', completed: false },
-                    { id: 3, title: 'Async Programming', duration: '5 menit', completed: false }
-                ]
+                title: "Python for Data Science",
+                category: "ai",
+                level: "intermediate",
+                type: "premium",
+                price: 499000,
+                duration: "120 menit",
+                video: "https://www.youtube.com/embed/_uQrJ0TkZlc",
+                description: "Kuasai Python untuk analisis data",
+                image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400",
+                lessons: 15,
+                students: 650
+            },
+            {
+                id: 7,
+                title: "SEO Optimization Advanced",
+                category: "digital-marketing",
+                level: "advanced",
+                type: "premium",
+                price: 399000,
+                duration: "100 menit",
+                video: "https://www.youtube.com/embed/SnxeXZpZkI0",
+                description: "Teknik SEO tingkat lanjut untuk ranking #1",
+                image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=400",
+                lessons: 14,
+                students: 450
+            },
+            {
+                id: 8,
+                title: "Graphic Design with Canva",
+                category: "desain",
+                level: "beginner",
+                type: "gratis",
+                price: 0,
+                duration: "35 menit",
+                video: "https://www.youtube.com/embed/cn8sVzK7xaI",
+                description: "Buat desain profesional dengan Canva",
+                image: "https://images.unsplash.com/photo-1626785774625-ddcddc3445e9?w=400",
+                lessons: 8,
+                students: 2800
             }
         ];
 
-        // Initialize App
-        function initApp() {
-            checkAuth();
-            loadUserData();
-            setupThemeToggle();
+        // Roadmaps Data
+        const roadmapsData = {
+            'web-developer': [
+                {
+                    title: "Dasar-dasar Web Development",
+                    description: "HTML, CSS, JavaScript fundamentals",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Frontend Framework",
+                    description: "React.js atau Vue.js",
+                    duration: "6 minggu",
+                    completed: false
+                },
+                {
+                    title: "Backend Development",
+                    description: "Node.js, Express, Database",
+                    duration: "8 minggu",
+                    completed: false
+                },
+                {
+                    title: "Full Stack Project",
+                    description: "Buat aplikasi web lengkap",
+                    duration: "4 minggu",
+                    completed: false
+                }
+            ],
+            'ui-ux-designer': [
+                {
+                    title: "Design Thinking",
+                    description: "Prinsip dasar desain dan user research",
+                    duration: "3 minggu",
+                    completed: false
+                },
+                {
+                    title: "UI Design Tools",
+                    description: "Figma, Adobe XD",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "UX Research & Testing",
+                    description: "User testing dan iterasi desain",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Portfolio Project",
+                    description: "Buat case study portfolio",
+                    duration: "3 minggu",
+                    completed: false
+                }
+            ],
+            'digital-marketer': [
+                {
+                    title: "Digital Marketing Basics",
+                    description: "SEO, SEM, Social Media",
+                    duration: "3 minggu",
+                    completed: false
+                },
+                {
+                    title: "Content Marketing",
+                    description: "Content strategy & creation",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Analytics & Optimization",
+                    description: "Google Analytics, A/B Testing",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Campaign Management",
+                    description: "Jalankan campaign lengkap",
+                    duration: "4 minggu",
+                    completed: false
+                }
+            ],
+            'data-analyst': [
+                {
+                    title: "Statistics & Math",
+                    description: "Dasar statistik untuk analisis data",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Python for Data",
+                    description: "Pandas, NumPy, Matplotlib",
+                    duration: "6 minggu",
+                    completed: false
+                },
+                {
+                    title: "SQL & Databases",
+                    description: "Query optimization & database design",
+                    duration: "4 minggu",
+                    completed: false
+                },
+                {
+                    title: "Data Visualization",
+                    description: "Tableau, Power BI",
+                    duration: "4 mingkau",
+                    completed: false
+                }
+            ]
+        };
+
+        // Initialize
+        let currentUser = null;
+        let currentCourse = null;
+        let currentPaymentAmount = 0;
+
+        // Check session on load
+        window.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+        });
+
+        function checkSession() {
+            const session = localStorage.getItem('talentaeSession');
+            if (session) {
+                currentUser = JSON.parse(session);
+                showMainApp();
+            }
+        }
+
+        // Show/Hide Pages
+        function showPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const targetPage = document.getElementById(pageName + 'Page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+                
+                // Load content based on page
+                if (pageName === 'home') loadFeaturedCourses();
+                if (pageName === 'courses') loadAllCourses();
+                if (pageName === 'dashboard') loadDashboard();
+                if (pageName === 'roadmap') showRoadmap('web-developer');
+                if (pageName === 'profile') loadProfile();
+            }
         }
 
         // Authentication Functions
-        function checkAuth() {
-            const session = localStorage.getItem('talentae_session');
-            if (session) {
-                AppState.currentUser = JSON.parse(session);
-                updateNavMenu(true);
-                showPage(AppState.currentPage);
-            } else {
-                updateNavMenu(false);
-                showLoginPage();
-            }
-        }
-
-        function updateNavMenu(isLoggedIn) {
-            const navMenu = document.getElementById('navMenu');
-            if (isLoggedIn) {
-                navMenu.innerHTML = `
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('home')">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('courses')">Kursus</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('roadmap')">Roadmap</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('dashboard')">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPage('profile')">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
-                `;
-            } else {
-                navMenu.innerHTML = `
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showLoginPage()">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showRegisterPage()">Register</a></li>
-                `;
-            }
-        }
-
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            const text = document.getElementById('notificationText');
-            
-            notification.className = `notification ${type}`;
-            text.textContent = message;
-            notification.style.display = 'flex';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 3000);
-        }
-
-        function showLoading() {
-            document.getElementById('loading').style.display = 'flex';
-        }
-
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-        }
-
-        function register(event) {
+        function handleRegister(event) {
             event.preventDefault();
-            showLoading();
-
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
-            const password = document.getElementById('regPassword').value;
-
-            // Validasi
-            if (!email.includes('@')) {
-                hideLoading();
-                showNotification('Email tidak valid!', 'error');
-                return;
-            }
-
-            if (password.length < 6) {
-                hideLoading();
-                showNotification('Password minimal 6 karakter!', 'error');
-                return;
-            }
-
-            // Simpan user
-            let users = JSON.parse(localStorage.getItem('talentae_users') || '[]');
             
-            // Cek email sudah ada
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Password tidak cocok!', 'error');
+                return;
+            }
+            
+            // Check if email exists
+            const users = JSON.parse(localStorage.getItem('talentaeUsers') || '[]');
             if (users.find(u => u.email === email)) {
-                hideLoading();
                 showNotification('Email sudah terdaftar!', 'error');
                 return;
             }
-
+            
+            // Hash password (simple encoding)
+            const hashedPassword = btoa(password);
+            
             const newUser = {
                 id: Date.now(),
                 name,
                 email,
-                password: btoa(password), // Simple encoding
+                password: hashedPassword,
+                phone: '',
+                bio: '',
+                enrolledCourses: [],
+                completedCourses: [],
+                certificates: [],
+                skills: [],
                 createdAt: new Date().toISOString()
             };
-
-            users.push(newUser);
-            localStorage.setItem('talentae_users', JSON.stringify(users));
-
-            hideLoading();
-            showNotification('Registrasi berhasil! Silakan login.');
             
-            setTimeout(() => {
-                showLoginPage();
-            }, 1000);
+            users.push(newUser);
+            localStorage.setItem('talentaeUsers', JSON.stringify(users));
+            
+            showNotification('Registrasi berhasil! Silakan login.', 'success');
+            showPage('login');
         }
 
-        function login(event) {
+        function handleLogin(event) {
             event.preventDefault();
-            showLoading();
-
+            
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            const remember = document.getElementById('rememberMe').checked;
-
-            const users = JSON.parse(localStorage.getItem('talentae_users') || '[]');
-            const user = users.find(u => u.email === email && u.password === btoa(password));
-
-            if (user) {
-                const session = {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    remember
-                };
-
-                localStorage.setItem('talentae_session', JSON.stringify(session));
-                AppState.currentUser = session;
-
-                hideLoading();
-                showNotification(`Selamat datang, ${user.name}!`);
-                
-                updateNavMenu(true);
-                showPage('home');
-            } else {
-                hideLoading();
-                showNotification('Email atau password salah!', 'error');
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            const users = JSON.parse(localStorage.getItem('talentaeUsers') || '[]');
+            const user = users.find(u => u.email === email);
+            
+            if (!user) {
+                showNotification('Email tidak terdaftar!', 'error');
+                return;
             }
+            
+            const hashedPassword = btoa(password);
+            if (user.password !== hashedPassword) {
+                showNotification('Password salah!', 'error');
+                return;
+            }
+            
+            currentUser = user;
+            
+            if (rememberMe) {
+                localStorage.setItem('talentaeSession', JSON.stringify(user));
+            } else {
+                sessionStorage.setItem('talentaeSession', JSON.stringify(user));
+            }
+            
+            showNotification('Login berhasil!', 'success');
+            showMainApp();
+        }
+
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value;
+            const users = JSON.parse(localStorage.getItem('talentaeUsers') || '[]');
+            const user = users.find(u => u.email === email);
+            
+            if (!user) {
+                showNotification('Email tidak terdaftar!', 'error');
+                return;
+            }
+            
+            // Simulate sending reset email
+            showNotification('Link reset password telah dikirim ke email Anda!', 'success');
+            setTimeout(() => showPage('login'), 2000);
         }
 
         function logout() {
-            localStorage.removeItem('talentae_session');
-            AppState.currentUser = null;
-            updateNavMenu(false);
-            showNotification('Logout berhasil!');
-            showLoginPage();
+            localStorage.removeItem('talentaeSession');
+            sessionStorage.removeItem('talentaeSession');
+            currentUser = null;
+            document.getElementById('mainNavbar').style.display = 'none';
+            showPage('login');
+            showNotification('Logout berhasil!', 'success');
         }
 
-        function forgotPassword(event) {
-            event.preventDefault();
-            const email = document.getElementById('forgotEmail').value;
+        function showMainApp() {
+            document.getElementById('mainNavbar').style.display = 'block';
+            showPage('home');
+        }
+
+        // Load Featured Courses
+        function loadFeaturedCourses() {
+            const container = document.getElementById('featuredCourses');
+            const featured = coursesData.slice(0, 3);
             
-            const users = JSON.parse(localStorage.getItem('talentae_users') || '[]');
-            const user = users.find(u => u.email === email);
-
-            if (user) {
-                showNotification('Link reset password telah dikirim ke email Anda!');
-                setTimeout(() => showLoginPage(), 2000);
-            } else {
-                showNotification('Email tidak ditemukan!', 'error');
-            }
-        }
-
-        // Page Rendering Functions
-        function showPage(page) {
-            AppState.currentPage = page;
-            const content = document.getElementById('mainContent');
-
-            switch(page) {
-                case 'home':
-                    content.innerHTML = renderHomePage();
-                    break;
-                case 'courses':
-                    content.innerHTML = renderCoursesPage();
-                    break;
-                case 'course-detail':
-                    // Will be called with course ID
-                    break;
-                case 'dashboard':
-                    content.innerHTML = renderDashboard();
-                    animateProgress();
-                    break;
-                case 'roadmap':
-                    content.innerHTML = renderRoadmap();
-                    break;
-                case 'profile':
-                    content.innerHTML = renderProfile();
-                    break;
-            }
-        }
-
-        function showLoginPage() {
-            document.getElementById('mainContent').innerHTML = `
-                <div class="auth-container">
-                    <div class="auth-card">
-                        <h2 class="text-center mb-4" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            <i class="fas fa-sign-in-alt me-2"></i>Login
-                        </h2>
-                        <form onsubmit="login(event)">
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="loginEmail" required>
+            container.innerHTML = featured.map(course => `
+                <div class="col-md-4">
+                    <div class="card">
+                        <div style="position: relative;">
+                            <img src="${course.image}" class="card-img-top" alt="${course.title}">
+                            <span class="category-badge">${course.category}</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="skill-badge badge-${course.level}">${course.level}</span>
+                            <h5 class="card-title mt-2 mb-3">${course.title}</h5>
+                            <p class="card-text text-muted">${course.description}</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                                <span><i class="fas fa-users"></i> ${course.students}</span>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Password</label>
-                                <input type="password" class="form-control" id="loginPassword" required>
-                            </div>
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">Remember Me</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
-                            <div class="text-center">
-                                <a href="#" onclick="showForgotPassword()" class="text-decoration-none">Lupa Password?</a>
-                                <br>
-                                <span class="text-muted">Belum punya akun? </span>
-                                <a href="#" onclick="showRegisterPage()" class="text-decoration-none">Register</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            `;
-        }
-
-        function showRegisterPage() {
-            document.getElementById('mainContent').innerHTML = `
-                <div class="auth-container">
-                    <div class="auth-card">
-                        <h2 class="text-center mb-4" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            <i class="fas fa-user-plus me-2"></i>Register
-                        </h2>
-                        <form onsubmit="register(event)">
-                            <div class="mb-3">
-                                <label class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="regName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="regEmail" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Password (min. 6 karakter)</label>
-                                <input type="password" class="form-control" id="regPassword" required minlength="6">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
-                            <div class="text-center">
-                                <span class="text-muted">Sudah punya akun? </span>
-                                <a href="#" onclick="showLoginPage()" class="text-decoration-none">Login</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            `;
-        }
-
-        function showForgotPassword() {
-            document.getElementById('mainContent').innerHTML = `
-                <div class="auth-container">
-                    <div class="auth-card">
-                        <h2 class="text-center mb-4" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                            <i class="fas fa-key me-2"></i>Reset Password
-                        </h2>
-                        <form onsubmit="forgotPassword(event)">
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="forgotEmail" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 mb-3">Kirim Link Reset</button>
-                            <div class="text-center">
-                                <a href="#" onclick="showLoginPage()" class="text-decoration-none">Kembali ke Login</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderHomePage() {
-            return `
-                <section class="hero">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6">
-                                <h1>Belajar Skill Praktis dalam 15 Menit</h1>
-                                <p>Platform belajar singkat dan aplikatif untuk membantu kamu menguasai skill yang siap pakai di dunia kerja</p>
-                                <button class="btn btn-primary me-3" onclick="showPage('courses')">
-                                    <i class="fas fa-play me-2"></i>Mulai Belajar Gratis
-                                </button>
-                                <button class="btn btn-outline-primary" onclick="showPage('roadmap')">
-                                    <i class="fas fa-route me-2"></i>Lihat Roadmap
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold" style="color: var(--primary);">
+                                    ${course.type === 'gratis' ? 'GRATIS' : 'Rp ' + course.price.toLocaleString('id-ID')}
+                                </span>
+                                <button class="btn btn-primary btn-sm" onclick="viewCourseDetail(${course.id})">
+                                    Lihat Detail
                                 </button>
                             </div>
-                            <div class="col-lg-6 text-center">
-                                <i class="fas fa-graduation-cap" style="font-size: 15rem; color: var(--primary); opacity: 0.1;"></i>
-                            </div>
                         </div>
-                    </div>
-                </section>
-
-                <section class="py-5">
-                    <div class="container">
-                        <h2 class="text-center mb-5" style="font-weight: 700;">
-                            <i class="fas fa-fire me-2"></i>Kategori Populer
-                        </h2>
-                        <div class="row g-4">
-                            ${renderCategoryCards()}
-                        </div>
-                    </div>
-                </section>
-
-                <section class="py-5" style="background: rgba(91, 35, 255, 0.03);">
-                    <div class="container">
-                        <h2 class="text-center mb-5" style="font-weight: 700;">
-                            <i class="fas fa-star me-2"></i>Kursus Terpopuler
-                        </h2>
-                        <div class="row g-4">
-                            ${renderPopularCourses()}
-                        </div>
-                    </div>
-                </section>
-
-                <section class="py-5">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6">
-                                <h2 style="font-weight: 700; margin-bottom: 1.5rem;">
-                                    <i class="fas fa-crown me-2"></i>Upgrade ke Premium
-                                </h2>
-                                <ul class="list-unstyled">
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Akses semua kursus premium</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Sertifikat terverifikasi</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Mentoring 1-on-1</li>
-                                    <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Akses selamanya</li>
-                                </ul>
-                                <button class="btn btn-primary" onclick="showPremiumModal()">
-                                    <i class="fas fa-bolt me-2"></i>Mulai Sekarang - Rp 99.000/bulan
-                                </button>
-                            </div>
-                            <div class="col-lg-6 text-center">
-                                <i class="fas fa-trophy" style="font-size: 12rem; color: var(--secondary); opacity: 0.2;"></i>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderCategoryCards() {
-            const categories = [
-                { name: 'Desain', icon: 'fa-palette', color: 'linear-gradient(135deg, #667eea, #764ba2)' },
-                { name: 'Coding', icon: 'fa-code', color: 'linear-gradient(135deg, #f093fb, #f5576c)' },
-                { name: 'AI', icon: 'fa-robot', color: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
-                { name: 'Digital Marketing', icon: 'fa-bullhorn', color: 'linear-gradient(135deg, #43e97b, #38f9d7)' },
-                { name: 'Keuangan', icon: 'fa-coins', color: 'linear-gradient(135deg, #fa709a, #fee140)' },
-            ];
-
-            return categories.map(cat => `
-                <div class="col-md-6 col-lg-4">
-                    <div class="course-card" onclick="filterCourses('${cat.name.toLowerCase()}')">
-                        <div class="course-icon" style="background: ${cat.color};">
-                            <i class="fas ${cat.icon}"></i>
-                        </div>
-                        <h4 style="font-weight: 600;">${cat.name}</h4>
-                        <p class="text-muted mb-0">Pelajari ${cat.name.toLowerCase()} dari dasar</p>
                     </div>
                 </div>
             `).join('');
         }
 
-        function renderPopularCourses() {
-            return coursesData.slice(0, 3).map(course => `
-                <div class="col-md-6 col-lg-4">
-                    ${renderCourseCard(course)}
+        // Load All Courses
+        function loadAllCourses() {
+            filterCourses();
+        }
+
+        function filterCourses() {
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const levelFilter = document.getElementById('levelFilter').value;
+            const typeFilter = document.getElementById('typeFilter').value;
+            
+            let filtered = coursesData;
+            
+            if (categoryFilter !== 'all') {
+                filtered = filtered.filter(c => c.category === categoryFilter);
+            }
+            if (levelFilter !== 'all') {
+                filtered = filtered.filter(c => c.level === levelFilter);
+            }
+            if (typeFilter !== 'all') {
+                filtered = filtered.filter(c => c.type === typeFilter);
+            }
+            
+            const container = document.getElementById('coursesList');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <h4>Tidak ada kelas yang ditemukan</h4>
+                            <p>Coba ubah filter untuk melihat kelas lainnya</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = filtered.map(course => `
+                <div class="col-md-4">
+                    <div class="card">
+                        <div style="position: relative;">
+                            <img src="${course.image}" class="card-img-top" alt="${course.title}">
+                            <span class="category-badge">${course.category}</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="skill-badge badge-${course.level}">${course.level}</span>
+                            <h5 class="card-title mt-2 mb-3">${course.title}</h5>
+                            <p class="card-text text-muted">${course.description}</p>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span><i class="fas fa-clock"></i> ${course.duration}</span>
+                                <span><i class="fas fa-book"></i> ${course.lessons} pelajaran</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="fw-bold" style="color: var(--primary);">
+                                    ${course.type === 'gratis' ? 'GRATIS' : 'Rp ' + course.price.toLocaleString('id-ID')}
+                                </span>
+                                <button class="btn btn-primary btn-sm" onclick="viewCourseDetail(${course.id})">
+                                    Lihat Detail
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function renderCoursesPage() {
-            return `
-                <section class="py-5">
-                    <div class="container">
-                        <h1 class="text-center mb-5" style="font-weight: 700;">
-                            <i class="fas fa-book-open me-2"></i>Semua Kursus
-                        </h1>
-
-                        <div class="row mb-4">
-                            <div class="col-md-6 mx-auto">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari kursus..." id="searchCourse" onkeyup="searchCourses()">
-                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-12 text-center">
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('all')">Semua</button>
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('desain')">Desain</button>
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('coding')">Coding</button>
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('ai')">AI</button>
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('digital marketing')">Digital Marketing</button>
-                                <button class="btn btn-outline-primary m-2" onclick="filterCourses('keuangan')">Keuangan</button>
-                            </div>
-                        </div>
-
-                        <div class="row g-4" id="coursesContainer">
-                            ${coursesData.map(course => `
-                                <div class="col-md-6 col-lg-4" data-category="${course.category}">
-                                    ${renderCourseCard(course)}
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderCourseCard(course) {
-            const userProgress = getUserProgress(course.id);
-            const progressPercent = userProgress ? userProgress.progress : 0;
-
-            return `
-                <div class="course-card" onclick="showCourseDetail(${course.id})">
-                    ${course.premium ? '<div class="premium-badge"><i class="fas fa-crown"></i> Premium</div>' : ''}
-                    <div class="course-icon">
-                        <i class="fas ${course.icon}"></i>
-                    </div>
-                    <h5 style="font-weight: 600; margin-bottom: 0.5rem;">${course.title}</h5>
-                    <p class="text-muted mb-2">${course.description}</p>
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="badge-level badge-${course.level}">${course.level}</span>
-                        <span class="text-muted"><i class="fas fa-clock me-1"></i>${course.duration}</span>
-                    </div>
-                    ${progressPercent > 0 ? `
-                        <div class="progress-container">
-                            <div class="progress-bar-custom" style="width: ${progressPercent}%"></div>
-                        </div>
-                        <small class="text-muted">${progressPercent}% selesai</small>
-                    ` : ''}
-                    ${course.premium ? `
-                        <div class="mt-3">
-                            <strong style="color: var(--primary);">Rp ${course.price.toLocaleString('id-ID')}</strong>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        }
-
-        function filterCourses(category) {
-            const courses = document.querySelectorAll('#coursesContainer > div');
-            courses.forEach(course => {
-                if (category === 'all' || course.dataset.category === category) {
-                    course.style.display = 'block';
-                } else {
-                    course.style.display = 'none';
-                }
-            });
-        }
-
-        function searchCourses() {
-            const searchTerm = document.getElementById('searchCourse').value.toLowerCase();
-            const courses = document.querySelectorAll('#coursesContainer > div');
-            
-            courses.forEach(course => {
-                const title = course.textContent.toLowerCase();
-                if (title.includes(searchTerm)) {
-                    course.style.display = 'block';
-                } else {
-                    course.style.display = 'none';
-                }
-            });
-        }
-
-        function showCourseDetail(courseId) {
+        // View Course Detail
+        function viewCourseDetail(courseId) {
             const course = coursesData.find(c => c.id === courseId);
-            const userProgress = getUserProgress(courseId) || { completedVideos: [], progress: 0 };
-
-            document.getElementById('mainContent').innerHTML = `
-                <section class="py-5">
-                    <div class="container">
-                        <button class="btn btn-outline-primary mb-4" onclick="showPage('courses')">
-                            <i class="fas fa-arrow-left me-2"></i>Kembali
+            currentCourse = course;
+            
+            const isEnrolled = currentUser.enrolledCourses.includes(courseId);
+            const isCompleted = currentUser.completedCourses.includes(courseId);
+            
+            const modalBody = document.getElementById('courseDetailBody');
+            modalBody.innerHTML = `
+                <div class="ratio ratio-16x9 mb-4">
+                    <iframe src="${course.video}" allowfullscreen></iframe>
+                </div>
+                <span class="skill-badge badge-${course.level}">${course.level}</span>
+                <span class="skill-badge" style="background-color: var(--secondary); color: white;">${course.category}</span>
+                <h3 class="mt-3 mb-3">${course.title}</h3>
+                <p class="text-muted">${course.description}</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <i class="fas fa-clock"></i> ${course.duration}
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fas fa-book"></i> ${course.lessons} pelajaran
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fas fa-users"></i> ${course.students} siswa
+                    </div>
+                </div>
+                
+                ${isCompleted ? `
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> Anda telah menyelesaikan kelas ini!
+                        <button class="btn btn-sm btn-success float-end" onclick="viewCertificate(${courseId})">
+                            Lihat Sertifikat
                         </button>
+                    </div>
+                ` : isEnrolled ? `
+                    <div class="progress mb-3">
+                        <div class="progress-bar" style="width: 50%">50%</div>
+                    </div>
+                    <button class="btn btn-primary w-100 mb-2" onclick="continueCourse(${courseId})">
+                        Lanjutkan Belajar
+                    </button>
+                    <button class="btn btn-secondary w-100" onclick="completeCourse(${courseId})">
+                        Tandai Selesai
+                    </button>
+                ` : `
+                    <h4 class="mb-3">
+                        ${course.type === 'gratis' ? 
+                            '<span style="color: var(--secondary);">GRATIS</span>' : 
+                            '<span style="color: var(--primary);">Rp ' + course.price.toLocaleString('id-ID') + '</span>'
+                        }
+                    </h4>
+                    <button class="btn btn-primary btn-lg w-100" onclick="enrollCourse(${courseId})">
+                        ${course.type === 'gratis' ? 'Mulai Belajar Gratis' : 'Beli Kelas Ini'}
+                    </button>
+                `}
+            `;
+            
+            document.getElementById('courseDetailTitle').textContent = course.title;
+            new bootstrap.Modal(document.getElementById('courseDetailModal')).show();
+        }
 
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="course-card">
-                                    <h2 style="font-weight: 700; margin-bottom: 1rem;">${course.title}</h2>
-                                    <div class="d-flex gap-2 mb-3">
-                                        <span class="badge-level badge-${course.level}">${course.level}</span>
-                                        <span class="badge bg-secondary">${course.category}</span>
-                                    </div>
-                                    <p>${course.description}</p>
+        // Enroll Course
+        function enrollCourse(courseId) {
+            const course = coursesData.find(c => c.id === courseId);
+            
+            if (course.type === 'premium') {
+                currentPaymentAmount = course.price;
+                showPaymentModal();
+            } else {
+                processEnrollment(courseId);
+            }
+        }
 
-                                    <div class="video-container mb-4">
-                                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                                    </div>
+        function processEnrollment(courseId) {
+            showLoading();
+            
+            setTimeout(() => {
+                currentUser.enrolledCourses.push(courseId);
+                updateUserData();
+                hideLoading();
+                
+                bootstrap.Modal.getInstance(document.getElementById('courseDetailModal')).hide();
+                showNotification('Berhasil mendaftar kelas!', 'success');
+                
+                viewCourseDetail(courseId);
+            }, 1000);
+        }
 
-                                    <h4 style="font-weight: 600; margin-bottom: 1.5rem;">
-                                        <i class="fas fa-list me-2"></i>Daftar Video
-                                    </h4>
+        function continueCourse(courseId) {
+            showNotification('Melanjutkan pembelajaran...', 'success');
+            // Here you would implement the actual course player
+        }
 
-                                    ${course.videos.map((video, index) => {
-                                        const isCompleted = userProgress.completedVideos.includes(video.id);
-                                        return `
-                                            <div class="course-card mb-3">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div>
-                                                        <h6 style="font-weight: 600; margin-bottom: 0.25rem;">
-                                                            ${index + 1}. ${video.title}
-                                                            ${isCompleted ? '<i class="fas fa-check-circle text-success ms-2"></i>' : ''}
-                                                        </h6>
-                                                        <small class="text-muted">${video.duration}</small>
-                                                    </div>
-                                                    <button class="btn btn-sm ${isCompleted ? 'btn-success' : 'btn-primary'}" 
-                                                            onclick="completeVideo(${courseId}, ${video.id})">
-                                                        ${isCompleted ? '<i class="fas fa-check"></i> Selesai' : '<i class="fas fa-play"></i> Mulai'}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }).join('')}
+        function completeCourse(courseId) {
+            showLoading();
+            
+            setTimeout(() => {
+                const index = currentUser.enrolledCourses.indexOf(courseId);
+                if (index > -1) {
+                    currentUser.enrolledCourses.splice(index, 1);
+                }
+                
+                currentUser.completedCourses.push(courseId);
+                
+                // Generate certificate
+                const certificate = {
+                    courseId: courseId,
+                    courseName: coursesData.find(c => c.id === courseId).title,
+                    date: new Date().toLocaleDateString('id-ID'),
+                    certificateId: 'CERT-' + Date.now()
+                };
+                currentUser.certificates.push(certificate);
+                
+                // Add skill
+                const course = coursesData.find(c => c.id === courseId);
+                if (!currentUser.skills.includes(course.category)) {
+                    currentUser.skills.push(course.category);
+                }
+                
+                updateUserData();
+                hideLoading();
+                
+                bootstrap.Modal.getInstance(document.getElementById('courseDetailModal')).hide();
+                showNotification('Selamat! Anda telah menyelesaikan kelas ini!', 'success');
+                
+                // Show certificate
+                setTimeout(() => viewCertificate(courseId), 500);
+            }, 1000);
+        }
+
+        // Payment Functions
+        function showPaymentModal() {
+            document.getElementById('paymentMethodSelection').style.display = 'block';
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('qrisPayment').style.display = 'none';
+            document.getElementById('bankTransfer').style.display = 'none';
+            document.getElementById('ewalletPayment').style.display = 'none';
+            
+            new bootstrap.Modal(document.getElementById('paymentModal')).show();
+        }
+
+        function selectPaymentMethod(method) {
+            document.getElementById('paymentMethodSelection').style.display = 'none';
+            
+            if (method === 'card') {
+                document.getElementById('cardPaymentForm').style.display = 'block';
+                document.getElementById('cardAmount').value = 'Rp ' + currentPaymentAmount.toLocaleString('id-ID');
+            } else if (method === 'qris') {
+                document.getElementById('qrisPayment').style.display = 'block';
+                document.getElementById('qrisAmount').textContent = 'Rp ' + currentPaymentAmount.toLocaleString('id-ID');
+            } else if (method === 'bank') {
+                document.getElementById('bankTransfer').style.display = 'block';
+            } else if (method === 'ewallet') {
+                document.getElementById('ewalletPayment').style.display = 'block';
+            }
+        }
+
+        function backToPaymentMethods() {
+            document.getElementById('paymentMethodSelection').style.display = 'block';
+            document.getElementById('cardPaymentForm').style.display = 'none';
+            document.getElementById('qrisPayment').style.display = 'none';
+            document.getElementById('bankTransfer').style.display = 'none';
+            document.getElementById('ewalletPayment').style.display = 'none';
+        }
+
+        function processCardPayment(event) {
+            event.preventDefault();
+            showLoading();
+            
+            setTimeout(() => {
+                hideLoading();
+                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+                showPaymentSuccess();
+                processEnrollment(currentCourse.id);
+            }, 2000);
+        }
+
+        function confirmQRISPayment() {
+            showLoading();
+            
+            setTimeout(() => {
+                hideLoading();
+                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+                showPaymentSuccess();
+                processEnrollment(currentCourse.id);
+            }, 2000);
+        }
+
+        function showBankAccount() {
+            const bank = document.getElementById('transferBank').value;
+            if (bank) {
+                document.getElementById('selectedBank').textContent = bank;
+                document.getElementById('bankAmount').textContent = 'Rp ' + currentPaymentAmount.toLocaleString('id-ID');
+                document.getElementById('bankAccountInfo').style.display = 'block';
+            }
+        }
+
+        function confirmBankTransfer() {
+            showLoading();
+            
+            setTimeout(() => {
+                hideLoading();
+                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+                showPaymentSuccess();
+                processEnrollment(currentCourse.id);
+            }, 2000);
+        }
+
+        function showEwalletInfo() {
+            const ewallet = document.getElementById('ewalletType').value;
+            if (ewallet) {
+                document.getElementById('selectedEwallet').textContent = ewallet;
+                document.getElementById('ewalletName').textContent = ewallet;
+                document.getElementById('ewalletAmount').textContent = 'Rp ' + currentPaymentAmount.toLocaleString('id-ID');
+                document.getElementById('ewalletInfo').style.display = 'block';
+            }
+        }
+
+        function confirmEwalletPayment() {
+            showLoading();
+            
+            setTimeout(() => {
+                hideLoading();
+                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+                showPaymentSuccess();
+                processEnrollment(currentCourse.id);
+            }, 2000);
+        }
+
+        function showPaymentSuccess() {
+            new bootstrap.Modal(document.getElementById('paymentSuccessModal')).show();
+        }
+
+        // Certificate Functions
+        function viewCertificate(courseId) {
+            const certificate = currentUser.certificates.find(c => c.courseId === courseId);
+            
+            if (certificate) {
+                document.getElementById('certificateName').textContent = currentUser.name;
+                document.getElementById('certificateCourse').textContent = certificate.courseName;
+                document.getElementById('certificateDate').textContent = certificate.date;
+                
+                new bootstrap.Modal(document.getElementById('certificateModal')).show();
+            }
+        }
+
+        function downloadCertificate() {
+            showNotification('Sertifikat berhasil diunduh!', 'success');
+            // Here you would implement actual PDF generation
+        }
+
+        function shareCertificateLinkedIn() {
+            const url = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href);
+            window.open(url, '_blank');
+        }
+
+        // Roadmap Functions
+        function showRoadmap(roadmapType) {
+            const roadmap = roadmapsData[roadmapType];
+            const container = document.getElementById('roadmapContent');
+            
+            // Update active state
+            document.querySelectorAll('.list-group-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            container.innerHTML = roadmap.map((step, index) => `
+                <div class="roadmap-step ${step.completed ? 'completed' : ''}" style="margin-left: 30px;">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h5 class="mb-2">
+                                ${step.completed ? '<i class="fas fa-check-circle checkmark" style="color: var(--primary);"></i>' : 
+                                  '<span class="badge bg-secondary">' + (index + 1) + '</span>'}
+                                ${step.title}
+                            </h5>
+                            <p class="text-muted mb-2">${step.description}</p>
+                            <small><i class="fas fa-clock"></i> ${step.duration}</small>
+                        </div>
+                        <button class="btn btn-sm btn-${step.completed ? 'success' : 'primary'}" 
+                                onclick="toggleRoadmapStep('${roadmapType}', ${index})">
+                            ${step.completed ? 'Selesai' : 'Mulai'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleRoadmapStep(roadmapType, stepIndex) {
+            roadmapsData[roadmapType][stepIndex].completed = !roadmapsData[roadmapType][stepIndex].completed;
+            showRoadmap(roadmapType);
+            
+            if (roadmapsData[roadmapType][stepIndex].completed) {
+                showNotification('Step selesai! Lanjutkan ke step berikutnya.', 'success');
+            }
+        }
+
+        // Dashboard Functions
+        function loadDashboard() {
+            // Update stats
+            document.getElementById('totalCourses').textContent = 
+                currentUser.enrolledCourses.length + currentUser.completedCourses.length;
+            document.getElementById('completedCourses').textContent = currentUser.completedCourses.length;
+            document.getElementById('inProgressCourses').textContent = currentUser.enrolledCourses.length;
+            document.getElementById('totalCertificates').textContent = currentUser.certificates.length;
+            
+            // Calculate overall progress
+            const total = currentUser.enrolledCourses.length + currentUser.completedCourses.length;
+            const completed = currentUser.completedCourses.length;
+            const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            document.getElementById('overallProgress').textContent = progress + '%';
+            document.getElementById('overallProgressBar').style.width = progress + '%';
+            
+            // Load course history
+            loadCourseHistory();
+            loadCertificates();
+            loadSkills();
+        }
+
+        function loadCourseHistory() {
+            const container = document.getElementById('courseHistory');
+            const allCourses = [...currentUser.enrolledCourses, ...currentUser.completedCourses];
+            
+            if (allCourses.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-book-open"></i>
+                        <h5>Belum ada kelas</h5>
+                        <p>Mulai belajar sekarang!</p>
+                        <button class="btn btn-primary" onclick="showPage('courses')">Jelajahi Kelas</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = allCourses.map(courseId => {
+                const course = coursesData.find(c => c.id === courseId);
+                const isCompleted = currentUser.completedCourses.includes(courseId);
+                
+                return `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-2">
+                                    <img src="${course.image}" class="img-fluid rounded" alt="${course.title}">
                                 </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="course-card">
-                                    <h5 style="font-weight: 600; margin-bottom: 1rem;">Progress Anda</h5>
-                                    <div class="progress-container">
-                                        <div class="progress-bar-custom" style="width: ${userProgress.progress}%"></div>
-                                    </div>
-                                    <p class="text-center mt-2"><strong>${userProgress.progress}%</strong> selesai</p>
-
-                                    ${course.premium ? `
-                                        <hr>
-                                        <h5 style="font-weight: 600;">Premium Course</h5>
-                                        <p class="text-muted">Akses semua fitur premium</p>
-                                        <button class="btn btn-primary w-100" onclick="showPaymentModal(${courseId})">
-                                            <i class="fas fa-shopping-cart me-2"></i>Beli Sekarang - Rp ${course.price.toLocaleString('id-ID')}
-                                        </button>
-                                    ` : ''}
-
-                                    ${userProgress.progress === 100 ? `
-                                        <hr>
-                                        <button class="btn btn-success w-100" onclick="downloadCertificate(${courseId})">
-                                            <i class="fas fa-certificate me-2"></i>Download Sertifikat
-                                        </button>
-                                    ` : ''}
+                                <div class="col-md-6">
+                                    <h6 class="mb-1">${course.title}</h6>
+                                    <small class="text-muted">${course.category}</small>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="badge ${isCompleted ? 'bg-success' : 'bg-warning'}">
+                                        ${isCompleted ? 'Selesai' : 'Dalam Progress'}
+                                    </span>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-sm btn-primary" onclick="viewCourseDetail(${courseId})">
+                                        Lihat
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            `;
+                `;
+            }).join('');
         }
 
-        function completeVideo(courseId, videoId) {
-            const course = coursesData.find(c => c.id === courseId);
-            let progress = getUserProgress(courseId) || { courseId, completedVideos: [], progress: 0 };
-
-            if (!progress.completedVideos.includes(videoId)) {
-                progress.completedVideos.push(videoId);
-                progress.progress = Math.round((progress.completedVideos.length / course.videos.length) * 100);
-
-                saveUserProgress(progress);
-                showNotification('Video selesai ditonton!');
-
-                // Tampilkan checkmark animation
-                if (progress.progress === 100) {
-                    showCourseCompletedModal(courseId);
-                }
-
-                // Refresh halaman
-                showCourseDetail(courseId);
-            }
-        }
-
-        function showCourseCompletedModal(courseId) {
-            const course = coursesData.find(c => c.id === courseId);
+        function loadCertificates() {
+            const container = document.getElementById('certificatesList');
             
-            const modal = `
-                <div class="modal fade" id="completedModal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content" style="border-radius: 20px; border: none;">
-                            <div class="modal-body text-center p-5">
-                                <div class="checkmark-circle">
-                                    <i class="fas fa-check checkmark"></i>
-                                </div>
-                                <h3 style="font-weight: 700; margin-bottom: 1rem;">Selamat! 🎉</h3>
-                                <p>Anda telah menyelesaikan kursus</p>
-                                <h5 style="font-weight: 600; color: var(--primary);">${course.title}</h5>
-                                <button class="btn btn-primary mt-4" onclick="downloadCertificate(${courseId})">
-                                    <i class="fas fa-download me-2"></i>Download Sertifikat
+            if (currentUser.certificates.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-certificate"></i>
+                        <h5>Belum ada sertifikat</h5>
+                        <p>Selesaikan kelas untuk mendapatkan sertifikat</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = currentUser.certificates.map(cert => `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-1">
+                                <i class="fas fa-certificate fa-2x" style="color: var(--primary);"></i>
+                            </div>
+                            <div class="col-md-7">
+                                <h6 class="mb-1">${cert.courseName}</h6>
+                                <small class="text-muted">Diterbitkan: ${cert.date}</small>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <button class="btn btn-sm btn-primary me-2" onclick="viewCertificate(${cert.courseId})">
+                                    <i class="fas fa-eye"></i> Lihat
+                                </button>
+                                <button class="btn btn-sm btn-secondary" onclick="shareCertificateLinkedIn()">
+                                    <i class="fab fa-linkedin"></i> Share
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            `;
-
-            document.body.insertAdjacentHTML('beforeend', modal);
-            const modalEl = new bootstrap.Modal(document.getElementById('completedModal'));
-            modalEl.show();
+            `).join('');
         }
 
-        function downloadCertificate(courseId) {
-            const course = coursesData.find(c => c.id === courseId);
+        function loadSkills() {
+            const container = document.getElementById('skillsList');
             
-            // Simpan sertifikat
-            const certificate = {
-                courseId,
-                courseName: course.title,
-                userName: AppState.currentUser.name,
-                date: new Date().toLocaleDateString('id-ID'),
-                certificateId: 'CERT-' + Date.now()
-            };
-
-            let certificates = JSON.parse(localStorage.getItem(`talentae_certificates_${AppState.currentUser.id}`) || '[]');
-            if (!certificates.find(c => c.courseId === courseId)) {
-                certificates.push(certificate);
-                localStorage.setItem(`talentae_certificates_${AppState.currentUser.id}`, JSON.stringify(certificates));
+            if (currentUser.skills.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-lightbulb"></i>
+                        <h5>Belum ada skill yang dikuasai</h5>
+                        <p>Mulai belajar untuk menguasai skill baru</p>
+                    </div>
+                `;
+                return;
             }
-
-            // Tampilkan sertifikat
-            showCertificate(certificate);
-        }
-
-        function showCertificate(cert) {
-            document.getElementById('mainContent').innerHTML = `
-                <section class="py-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="certificate">
-                                    <div style="position: relative; z-index: 1;">
-                                        <h1 style="font-weight: 800; font-size: 3rem; margin-bottom: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                                            Sertifikat Penyelesaian
-                                        </h1>
-                                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Diberikan kepada</p>
-                                        <h2 style="font-weight: 700; font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary);">
-                                            ${cert.userName}
-                                        </h2>
-                                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                                            Telah berhasil menyelesaikan kursus
-                                        </p>
-                                        <h3 style="font-weight: 600; margin-bottom: 3rem;">
-                                            ${cert.courseName}
-                                        </h3>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <p class="text-muted mb-0">Tanggal</p>
-                                                <p style="font-weight: 600;">${cert.date}</p>
-                                            </div>
-                                            <div class="col-6">
-                                                <p class="text-muted mb-0">ID Sertifikat</p>
-                                                <p style="font-weight: 600;">${cert.certificateId}</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <button class="btn btn-primary me-2" onclick="shareCertificate('${cert.certificateId}')">
-                                                <i class="fab fa-linkedin me-2"></i>Share di LinkedIn
-                                            </button>
-                                            <button class="btn btn-outline-primary" onclick="window.print()">
-                                                <i class="fas fa-print me-2"></i>Print
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            
+            const skillIcons = {
+                'desain': 'fa-palette',
+                'coding': 'fa-code',
+                'ai': 'fa-robot',
+                'digital-marketing': 'fa-bullhorn',
+                'keuangan': 'fa-chart-line'
+            };
+            
+            container.innerHTML = currentUser.skills.map(skill => `
+                <div class="card d-inline-block m-2" style="width: 200px;">
+                    <div class="card-body text-center">
+                        <i class="fas ${skillIcons[skill]} fa-3x mb-3" style="color: var(--primary);"></i>
+                        <h6>${skill.charAt(0).toUpperCase() + skill.slice(1)}</h6>
+                        <span class="skill-badge badge-intermediate">Intermediate</span>
                     </div>
-                </section>
-            `;
+                </div>
+            `).join('');
         }
 
-        function shareCertificate(certId) {
-            const url = `https://talentae.com/certificate/${certId}`;
-            const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-            window.open(linkedInUrl, '_blank');
-            showNotification('Sertifikat siap dibagikan di LinkedIn!');
+        // Profile Functions
+        function loadProfile() {
+            document.getElementById('profileName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileFormName').value = currentUser.name;
+            document.getElementById('profileFormEmail').value = currentUser.email;
+            document.getElementById('profilePhone').value = currentUser.phone || '';
+            document.getElementById('profileBio').value = currentUser.bio || '';
         }
 
-        function renderDashboard() {
-            const userProgressData = getAllUserProgress();
-            const certificates = JSON.parse(localStorage.getItem(`talentae_certificates_${AppState.currentUser.id}`) || '[]');
-            const completedCourses = userProgressData.filter(p => p.progress === 100).length;
-            const inProgressCourses = userProgressData.filter(p => p.progress > 0 && p.progress < 100).length;
-
-            return `
-                <section class="py-5">
-                    <div class="container">
-                        <h1 class="text-center mb-5" style="font-weight: 700;">
-                            <i class="fas fa-chart-line me-2"></i>Dashboard Belajar
-                        </h1>
-
-                        <div class="row g-4 mb-5">
-                            <div class="col-md-4">
-                                <div class="dashboard-stat">
-                                    <i class="fas fa-book-reader mb-3" style="font-size: 3rem; color: var(--primary);"></i>
-                                    <div class="stat-number">${completedCourses}</div>
-                                    <p class="text-muted mb-0">Kursus Selesai</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="dashboard-stat">
-                                    <i class="fas fa-clock mb-3" style="font-size: 3rem; color: var(--secondary);"></i>
-                                    <div class="stat-number">${inProgressCourses}</div>
-                                    <p class="text-muted mb-0">Sedang Belajar</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="dashboard-stat">
-                                    <i class="fas fa-certificate mb-3" style="font-size: 3rem; color: #FFD700;"></i>
-                                    <div class="stat-number">${certificates.length}</div>
-                                    <p class="text-muted mb-0">Sertifikat</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="course-card mb-4">
-                                    <h4 style="font-weight: 600; margin-bottom: 1.5rem;">
-                                        <i class="fas fa-tasks me-2"></i>Kursus Sedang Berjalan
-                                    </h4>
-                                    ${inProgressCourses > 0 ? userProgressData.filter(p => p.progress > 0 && p.progress < 100).map(progress => {
-                                        const course = coursesData.find(c => c.id === progress.courseId);
-                                        return `
-                                            <div class="course-card mb-3" onclick="showCourseDetail(${course.id})">
-                                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <h6 style="font-weight: 600; margin: 0;">${course.title}</h6>
-                                                    <span class="badge-level badge-${course.level}">${course.level}</span>
-                                                </div>
-                                                <div class="progress-container">
-                                                    <div class="progress-bar-custom progress-animate" style="width: ${progress.progress}%"></div>
-                                                </div>
-                                                <small class="text-muted">${progress.progress}% selesai</small>
-                                            </div>
-                                        `;
-                                    }).join('') : '<div class="empty-state"><i class="fas fa-inbox empty-icon"></i><p>Belum ada kursus yang sedang berjalan</p></div>'}
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="course-card">
-                                    <h5 style="font-weight: 600; margin-bottom: 1.5rem;">
-                                        <i class="fas fa-certificate me-2"></i>Sertifikat Saya
-                                    </h5>
-                                    ${certificates.length > 0 ? certificates.map(cert => `
-                                        <div class="course-card mb-3" onclick="showCertificate(${JSON.stringify(cert).replace(/"/g, '&quot;')})">
-                                            <h6 style="font-weight: 600;">${cert.courseName}</h6>
-                                            <small class="text-muted">${cert.date}</small>
-                                        </div>
-                                    `).join('') : '<div class="empty-state"><i class="fas fa-award empty-icon"></i><p>Belum ada sertifikat</p></div>'}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
+        function enableEditProfile() {
+            document.getElementById('profileFormName').disabled = false;
+            document.getElementById('profilePhone').disabled = false;
+            document.getElementById('profileBio').disabled = false;
+            document.getElementById('profileActions').style.display = 'block';
         }
 
-        function renderRoadmap() {
-            const roadmaps = [
-                {
-                    title: 'Web Developer',
-                    steps: [
-                        { name: 'HTML & CSS Basics', completed: true },
-                        { name: 'JavaScript Fundamentals', completed: true },
-                        { name: 'React.js', completed: false, active: true },
-                        { name: 'Node.js & Backend', completed: false },
-                        { name: 'Database & DevOps', completed: false }
-                    ]
-                },
-                {
-                    title: 'UI/UX Designer',
-                    steps: [
-                        { name: 'Design Principles', completed: true },
-                        { name: 'Figma Mastery', completed: false, active: true },
-                        { name: 'User Research', completed: false },
-                        { name: 'Prototyping', completed: false },
-                        { name: 'Portfolio Building', completed: false }
-                    ]
-                },
-                {
-                    title: 'Digital Marketer',
-                    steps: [
-                        { name: 'Marketing Fundamentals', completed: true },
-                        { name: 'Social Media Marketing', completed: false, active: true },
-                        { name: 'SEO & SEM', completed: false },
-                        { name: 'Content Strategy', completed: false },
-                        { name: 'Analytics & Reporting', completed: false }
-                    ]
-                }
-            ];
-
-            return `
-                <section class="py-5">
-                    <div class="container">
-                        <h1 class="text-center mb-5" style="font-weight: 700;">
-                            <i class="fas fa-route me-2"></i>Roadmap Skill
-                        </h1>
-
-                        ${roadmaps.map(roadmap => `
-                            <div class="course-card mb-5">
-                                <h3 style="font-weight: 700; margin-bottom: 2rem;">
-                                    <i class="fas fa-map-marked-alt me-2"></i>${roadmap.title}
-                                </h3>
-                                <div style="padding-left: 2rem;">
-                                    ${roadmap.steps.map((step, index) => `
-                                        <div class="roadmap-step ${step.completed ? 'completed' : ''} ${step.active ? 'active' : ''}">
-                                            <div class="d-flex align-items-center">
-                                                <div style="width: 40px; height: 40px; background: ${step.completed ? 'var(--secondary)' : step.active ? 'var(--primary)' : '#dfe6e9'}; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-right: 1rem;">
-                                                    ${step.completed ? '<i class="fas fa-check"></i>' : index + 1}
-                                                </div>
-                                                <div style="flex: 1;">
-                                                    <h6 style="font-weight: 600; margin: 0;">${step.name}</h6>
-                                                    <small class="text-muted">
-                                                        ${step.completed ? 'Selesai' : step.active ? 'Sedang Berjalan' : 'Belum Dimulai'}
-                                                    </small>
-                                                </div>
-                                                ${!step.completed ? `
-                                                    <button class="btn btn-sm ${step.active ? 'btn-primary' : 'btn-outline-primary'}">
-                                                        ${step.active ? 'Lanjutkan' : 'Mulai'}
-                                                    </button>
-                                                ` : ''}
-                                            </div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderProfile() {
-            return `
-                <section class="py-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-6">
-                                <div class="course-card">
-                                    <div class="text-center mb-4">
-                                        <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 3rem; font-weight: 700;">
-                                            ${AppState.currentUser.name.charAt(0).toUpperCase()}
-                                        </div>
-                                        <h3 style="font-weight: 700;">${AppState.currentUser.name}</h3>
-                                        <p class="text-muted">${AppState.currentUser.email}</p>
-                                    </div>
-
-                                    <form onsubmit="updateProfile(event)">
-                                        <div class="mb-3">
-                                            <label class="form-label">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="profileName" value="${AppState.currentUser.name}" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="profileEmail" value="${AppState.currentUser.email}" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Password Baru (kosongkan jika tidak ingin mengubah)</label>
-                                            <input type="password" class="form-control" id="profilePassword" minlength="6">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary w-100">
-                                            <i class="fas fa-save me-2"></i>Simpan Perubahan
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
+        function cancelEditProfile() {
+            loadProfile();
+            document.getElementById('profileFormName').disabled = true;
+            document.getElementById('profilePhone').disabled = true;
+            document.getElementById('profileBio').disabled = true;
+            document.getElementById('profileActions').style.display = 'none';
         }
 
         function updateProfile(event) {
             event.preventDefault();
-            showLoading();
+            
+            currentUser.name = document.getElementById('profileFormName').value;
+            currentUser.phone = document.getElementById('profilePhone').value;
+            currentUser.bio = document.getElementById('profileBio').value;
+            
+            updateUserData();
+            cancelEditProfile();
+            loadProfile();
+            
+            showNotification('Profile berhasil diupdate!', 'success');
+        }
 
-            const name = document.getElementById('profileName').value;
-            const email = document.getElementById('profileEmail').value;
-            const password = document.getElementById('profilePassword').value;
-
-            let users = JSON.parse(localStorage.getItem('talentae_users') || '[]');
-            const userIndex = users.findIndex(u => u.id === AppState.currentUser.id);
-
-            if (userIndex !== -1) {
-                users[userIndex].name = name;
-                users[userIndex].email = email;
-                if (password) {
-                    users[userIndex].password = btoa(password);
-                }
-
-                localStorage.setItem('talentae_users', JSON.stringify(users));
-
-                // Update session
-                AppState.currentUser.name = name;
-                AppState.currentUser.email = email;
-                localStorage.setItem('talentae_session', JSON.stringify(AppState.currentUser));
-
-                hideLoading();
-                showNotification('Profile berhasil diperbarui!');
-                
-                setTimeout(() => {
-                    renderProfile();
-                }, 1000);
+        function changePassword(event) {
+            event.preventDefault();
+            
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmNewPassword').value;
+            
+            const hashedOldPassword = btoa(oldPassword);
+            if (hashedOldPassword !== currentUser.password) {
+                showNotification('Password lama salah!', 'error');
+                return;
             }
-        }
-
-        function showPaymentModal(courseId) {
-            const course = coursesData.find(c => c.id === courseId);
             
-            const modal = `
-                <div class="modal fade" id="paymentModal" tabindex="-1">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content" style="border-radius: 20px; border: none;">
-                            <div class="modal-header" style="border: none;">
-                                <h5 class="modal-title" style="font-weight: 700;">
-                                    <i class="fas fa-shopping-cart me-2"></i>Checkout
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                <div class="course-card mb-4">
-                                    <h6 style="font-weight: 600;">${course.title}</h6>
-                                    <p class="text-muted mb-2">${course.description}</p>
-                                    <h4 style="color: var(--primary); font-weight: 700;">Rp ${course.price.toLocaleString('id-ID')}</h4>
-                                </div>
-
-                                <h6 style="font-weight: 600; margin-bottom: 1rem;">Pilih Metode Pembayaran</h6>
-
-                                <div class="payment-method" onclick="selectPayment('cc')">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-credit-card me-3" style="font-size: 2rem; color: var(--primary);"></i>
-                                        <div>
-                                            <h6 style="font-weight: 600; margin: 0;">Kartu Kredit/Debit</h6>
-                                            <small class="text-muted">Visa, Mastercard, JCB</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="payment-method" onclick="selectPayment('qris')">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-qrcode me-3" style="font-size: 2rem; color: var(--primary);"></i>
-                                        <div>
-                                            <h6 style="font-weight: 600; margin: 0;">QRIS</h6>
-                                            <small class="text-muted">Scan QR untuk bayar</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="payment-method" onclick="selectPayment('bank')">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-university me-3" style="font-size: 2rem; color: var(--primary);"></i>
-                                        <div>
-                                            <h6 style="font-weight: 600; margin: 0;">Transfer Bank</h6>
-                                            <small class="text-muted">BCA, Mandiri, BNI, BRI</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="payment-method" onclick="selectPayment('ewallet')">
-                                    <div class="d-flex align-items-center">
-                                        <i class="fas fa-wallet me-3" style="font-size: 2rem; color: var(--primary);"></i>
-                                        <div>
-                                            <h6 style="font-weight: 600; margin: 0;">E-Wallet</h6>
-                                            <small class="text-muted">GoPay, OVO, DANA, ShopeePay</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-primary w-100 mt-4" onclick="processPurchase(${courseId})">
-                                    <i class="fas fa-lock me-2"></i>Bayar Sekarang
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.body.insertAdjacentHTML('beforeend', modal);
-            const modalEl = new bootstrap.Modal(document.getElementById('paymentModal'));
-            modalEl.show();
-        }
-
-        function showPremiumModal() {
-            const modal = `
-                <div class="modal fade" id="premiumModal" tabindex="-1">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content" style="border-radius: 20px; border: none;">
-                            <div class="modal-header" style="border: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white;">
-                                <h5 class="modal-title" style="font-weight: 700;">
-                                    <i class="fas fa-crown me-2"></i>Upgrade ke Premium
-                                </h5>
-                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body p-4">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="course-card text-center">
-                                            <h4 style="font-weight: 700; margin-bottom: 1rem;">Bulanan</h4>
-                                            <h2 style="color: var(--primary); font-weight: 800;">Rp 99.000</h2>
-                                            <p class="text-muted mb-3">/bulan</p>
-                                            <button class="btn btn-outline-primary w-100" onclick="processPremium('monthly')">Pilih Paket</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="course-card text-center" style="border: 3px solid var(--primary);">
-                                            <div class="premium-badge" style="top: -1rem; right: 50%; transform: translateX(50%);">
-                                                <i class="fas fa-star"></i> Hemat 20%
-                                            </div>
-                                            <h4 style="font-weight: 700; margin-bottom: 1rem;">Tahunan</h4>
-                                            <h2 style="color: var(--primary); font-weight: 800;">Rp 949.000</h2>
-                                            <p class="text-muted mb-3">/tahun</p>
-                                            <button class="btn btn-primary w-100" onclick="processPremium('yearly')">Pilih Paket</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mt-4">
-                                    <h6 style="font-weight: 600; margin-bottom: 1rem;">Yang Anda Dapatkan:</h6>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Akses semua kursus premium</li>
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Sertifikat terverifikasi</li>
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Mentoring 1-on-1</li>
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Akses selamanya</li>
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Update konten terbaru</li>
-                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Komunitas eksklusif</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            document.body.insertAdjacentHTML('beforeend', modal);
-            const modalEl = new bootstrap.Modal(document.getElementById('premiumModal'));
-            modalEl.show();
-        }
-
-        function selectPayment(method) {
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-        }
-
-        function processPurchase(courseId) {
-            showLoading();
+            if (newPassword !== confirmPassword) {
+                showNotification('Password baru tidak cocok!', 'error');
+                return;
+            }
             
-            setTimeout(() => {
-                hideLoading();
-                showNotification('Pembayaran berhasil! Kursus sudah bisa diakses.');
-                bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
-                showCourseDetail(courseId);
-            }, 2000);
-        }
-
-        function processPremium(plan) {
-            showLoading();
+            currentUser.password = btoa(newPassword);
+            updateUserData();
             
-            setTimeout(() => {
-                hideLoading();
-                showNotification('Selamat! Anda sekarang member Premium!');
-                bootstrap.Modal.getInstance(document.getElementById('premiumModal')).hide();
-            }, 2000);
+            document.getElementById('changePasswordForm').reset();
+            showNotification('Password berhasil diubah!', 'success');
         }
 
-        // User Progress Functions
-        function getUserProgress(courseId) {
-            const progress = JSON.parse(localStorage.getItem(`talentae_progress_${AppState.currentUser.id}`) || '[]');
-            return progress.find(p => p.courseId === courseId);
-        }
-
-        function getAllUserProgress() {
-            return JSON.parse(localStorage.getItem(`talentae_progress_${AppState.currentUser.id}`) || '[]');
-        }
-
-        function saveUserProgress(progressData) {
-            let allProgress = getAllUserProgress();
-            const index = allProgress.findIndex(p => p.courseId === progressData.courseId);
+        // Update User Data
+        function updateUserData() {
+            const users = JSON.parse(localStorage.getItem('talentaeUsers') || '[]');
+            const index = users.findIndex(u => u.id === currentUser.id);
             
             if (index !== -1) {
-                allProgress[index] = progressData;
-            } else {
-                allProgress.push(progressData);
+                users[index] = currentUser;
+                localStorage.setItem('talentaeUsers', JSON.stringify(users));
+                localStorage.setItem('talentaeSession', JSON.stringify(currentUser));
             }
-
-            localStorage.setItem(`talentae_progress_${AppState.currentUser.id}`, JSON.stringify(allProgress));
         }
 
-        function loadUserData() {
-            // Load progress data jika ada
-        }
-
-        function animateProgress() {
-            setTimeout(() => {
-                document.querySelectorAll('.progress-animate').forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                });
-            }, 100);
-        }
-
-        // Theme Toggle
-        function setupThemeToggle() {
-            const toggle = document.getElementById('themeToggle');
-            const currentTheme = localStorage.getItem('talentae_theme') || 'light';
+        // Dark Mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.dark-mode-toggle i');
             
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('talentaeDarkMode', 'true');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('talentaeDarkMode', 'false');
             }
-
-            toggle.addEventListener('click', () => {
-                const theme = document.documentElement.getAttribute('data-theme');
-                
-                if (theme === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    localStorage.setItem('talentae_theme', 'light');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    localStorage.setItem('talentae_theme', 'dark');
-                }
-            });
         }
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            initApp();
+        // Check dark mode preference
+        if (localStorage.getItem('talentaeDarkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('.dark-mode-toggle i');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Utility Functions
+        function showLoading() {
+            document.getElementById('loadingContainer').classList.add('show');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingContainer').classList.remove('show');
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notificationMessage');
+            
+            notification.className = 'notification show ' + type;
+            messageEl.textContent = message;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Auto-format card number
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardNumber = document.getElementById('cardNumber');
+            if (cardNumber) {
+                cardNumber.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
         });
     </script>
 </body>
